@@ -8,13 +8,19 @@ tableData = [['apples', 'oranges', 'cherries', 'banana'],
 
 def max_length(table):
     """list max length of strings"""
-    listMax = []
-    for j in range(len(table)):
-        lengths = []
-        for i in range(len(table[j])):
-            lengths.append(len(table[j][i]))
-        listMax.append(max(lengths))
-    return listMax
+    colWidth = [0] * len(table)
+    for i in range(len(table)):
+        colWidth[i] = len(max(table[i], key=len)) + 1
+    return colWidth
+
+    """Less efficient version:"""
+    # listMax = []
+    # for j in range(len(table)):
+    #     lengths = []
+    #     for i in range(len(table[j])):
+    #         lengths.append(len(table[j][i]))
+    #     listMax.append(max(lengths))
+    # return listMax
 
 
 def newTable(table):
