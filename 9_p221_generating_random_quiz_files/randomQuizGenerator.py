@@ -56,14 +56,21 @@ hqs = {'Bedfordshire': 'Bedford',
        'Worcestershire': 'Worcester'}
 
 for quizNum in range(35):
-    # Create the quiz and answer key files.
-    quizFile = open(f'countiesquiz{quizNum + 1}.txt', 'w')
-    answerFile = open(f'countiesquiz_answer{quizNum + 1}.txt', 'w')
-    # Write the header for the quiz.
-    quizFile.write('Name:\n\nDate:\n\n')
-    quizFile.write(' ' * 20 + f'English Counties HQ quiz (Form {quizNum + 1})')
-    quizFile.write('\n\n')
-
-    # Close the files.
-    quizFile.close()
-    answerFile.close()
+       # Create the quiz and answer key files.
+       quizFile = open(f'countiesquiz{quizNum + 1}.txt', 'w')
+       answerFile = open(f'countiesquiz_answer{quizNum + 1}.txt', 'w')
+       # Write the header for the quiz.
+       quizFile.write('Name:\n\nDate:\n\n')
+       quizFile.write(' ' * 20 + f'English Counties HQ quiz (Form {quizNum + 1})')
+       quizFile.write('\n\n')
+       # Shuffle order of counties.
+       counties = list(hqs.keys())
+       random.shuffle(counties)
+       # Loop through counties to make a question for each county.
+       for questionNum in range(len(hqs.keys())):
+              correctAnswer = hqs[counties[questionNum]]
+              wrongAnswers = list(hqs.values())
+              del wrongAnswers[wrongAnswers.index(correctAnswer)]
+       # Close the files.
+       quizFile.close()
+       answerFile.close()
